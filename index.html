@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+    <style>
+
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Space Mono', monospace;
+            font-size: 1.5rem;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            cursor: help;
+        }
+        .text-transition {
+            transition: color 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+    <p id="dolphin-text" class="text-transition">Every day we slaughter our finest impulses. That is why we get a heartache when we read those lines written by the hand of a master and recognize them as our own, as the tender shoots which we stifled because we lacked the faith to believe in our own powers, our own criterion of truth and beauty. Every man, when he gets quiet, when he becomes desperately honest with himself, is capable of uttering profound truths. We all derive from the same source. there is no mystery about the origin of things. We are all part of creation, all kings, all poets, all musicians; we have only to open up, only to discover what is already there.</p>
+   
+    <script>
+        // Function to wrap each word in a span
+        function wrapWordsInSpans() {
+            var textElement = document.getElementById("dolphin-text");
+            var words = textElement.textContent.split(/\s+/); /*splits the text at the spaces*/
+            textElement.innerHTML = words.map(function(word) {
+                return "<span>" + word + "</span>";
+            }).join(" ");
+        }
+ 
+
+        wrapWordsInSpans();
+
+        // Define an array of colors
+        var colors = ["rgb(255, 0, 0)", "rgb(100, 0, 100)", "rgb(255, 110, 0)", "rgb(255, 0, 230)", "rgb(255, 100, 0)", "rgb(255, 200, 0)", "rgb(255, 0, 200)"];
+
+        function repeatColor(){
+            // Get all span elements
+            var spanElements = document.querySelectorAll("#dolphin-text span");
+
+            // Apply a random color to each span
+            spanElements.forEach(function(span) {
+                // Generate a random index based on the array length
+                var randomIndex = Math.floor(Math.random() * colors.length);
+
+                // Select a color from the array using the random index
+                var selectedColor = colors[randomIndex];
+
+                // Apply the selected color to the span element
+                span.style.color = selectedColor;
+
+                // Logging the color and random index
+                console.log("Selected Text Color:", selectedColor);
+                console.log("Random Index:", randomIndex);
+            });
+        };
+
+        function randomTextSize(){
+            var spanElements = document.querySelectorAll("#dolphin-text span");
+            spanElements.forEach(function(span){
+                var randomSize = Math.floor(Math.random() * 50);
+                span.style.fontSize = randomSize + "px";
+            });
+        };
+        
+
+        function blurryText(){
+            var spanElements = document.querySelectorAll("#dolphin-text span");
+            spanElements.forEach(function(span){
+                var randomBlur = Math.floor(Math.random() * 20);
+                span.style.filter = "blur(" + randomBlur + "px)";
+            });
+        };
+
+
+        setInterval(blurryText, 200)
+        setInterval(randomTextSize, 500)
+        // setInterval(repeatColor, 200);
+
+    </script>
+    
+</body>
+</html>
